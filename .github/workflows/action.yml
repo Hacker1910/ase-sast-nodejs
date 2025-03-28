@@ -1,11 +1,11 @@
-name: njsscan
+name: NodeJs Scan
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 jobs:
-  njsscan:
+  NodeJs Scan:
     runs-on: ubuntu-latest
     name: njsscan code scanning
     steps:
