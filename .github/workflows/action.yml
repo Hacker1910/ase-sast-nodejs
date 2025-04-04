@@ -18,14 +18,14 @@ jobs:
       id: njsscan
       uses: ajinabraham/njsscan-action@v9
       with:
-        args: '--directory . --sarif --output results.sarif || true'
+        args: '. --sarif --output results.sarif || true'
     - name: Upload Scan Report
       uses: actions/upload-artifact@v4
       with:
         name: security-scan-report
         path: results.sarif
     - name: Convert to JSON
-      run: mv results.sarif results.json
+      run: cp results.sarif results.json
     - name: Send to Server
       run: |
-        curl -X POST -H "Content-Type: multipart/form-data" -F "file=@results.json" http://35.219.184.76:8880/callback
+        curl -X POST -H "Content-Type: multipart/form-data" -F "file=@results.sarif" http://35.219.184.76:8880/callback
